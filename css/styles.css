@@ -1,5 +1,8 @@
 img {
     width: 200px;
     height: 200px;
-    border: blue solid;
+    margin: 10px 10px;
+}
+canvas {
+    border: thin solid black;
 }
