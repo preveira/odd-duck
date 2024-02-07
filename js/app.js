@@ -53,49 +53,6 @@ console.log(oddDucks);
 
 let duckImages = document.getElementById('oddDucks'); 
 
-function attachEventListeners() {
-  duckImages.addEventListener('click', function(event) {
-    event.preventDefault();
-    console.log(event.target.alt);
-    findDuck(event.target.alt);
-    renderNewDucks();
-    currentRound = roundCount(totalRounds, currentRound);
-  });
-}
-
-attachEventListeners();
-
-let handleClick = function (event) {
-  event.preventDefault();
-  console.log(event.target.alt); 
-
-  findDuck(event.target.alt);
-
-  renderNewDucks();
-  currentRound = roundCount(totalRounds, currentRound);
-}
-duckImages.addEventListener('click', handleClick);
-
-function roundCount(total, current) {
-  if (current < total) {
-    current++;
-  } else {
-    duckImages.removeEventListener('click', handleClick);
-    console.log('HERE IS THE DATA!!', oddDucks); 
-    alert('Voting Complete!!');
-  }
-  return current;
-}
-
-function findDuck(alt) {
-  for (let i = 0; i < oddDucks.length; i++) {
-    if (oddDucks[i].name === alt) {
-      oddDucks[i].clicks++;
-    }
-  }
-  console.log(oddDucks);
-}
-
 function renderNewDucks() {
   let index1 = Math.floor(Math.random() * oddDucks.length);
   let index2 = Math.floor(Math.random() * oddDucks.length);
@@ -126,7 +83,48 @@ function renderNewDucks() {
   randomDuck3.timesShown++;
 }
 
+function attachEventListeners() {
+  duckImages.addEventListener('click', function(event) {
+    event.preventDefault();
+    console.log(event.target.alt);
+    findDuck(event.target.alt);
+    renderNewDucks();
+    currentRound = roundCount(totalRounds, currentRound);
+  });
+}
 
+attachEventListeners();
+
+let handleClick = function (event) {
+  event.preventDefault();
+  console.log(event.target.alt); 
+
+  findDuck(event.target.alt);
+
+  renderNewDucks();
+  currentRound = roundCount(totalRounds, currentRound);
+}
+duckImages.addEventListener('click', handleClick);
+
+function roundCount(totalRounds, currentRound) {
+  if (currentRound < totalRounds) {
+    currentRound++;
+  } else {
+    duckImages.removeEventListener('click', handleClick);
+    console.log('HERE IS THE DATA!!', oddDucks); 
+    alert('Voting Complete!!');
+  }
+  return currentRound;
+}
+
+function findDuck(alt) {
+  for (let i = 0; i < oddDucks.length; i++) {
+    if (oddDucks[i].name === alt) {
+      oddDucks[i].clicks++;
+    }
+  }
+  console.log(oddDucks);
+}
 
 function getNames() {
   let names = [];
