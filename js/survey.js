@@ -32,6 +32,8 @@ function clearData() {
   localStorage.clear();
 }
 
+
+
 /******************************************************/
 
 // ***** see dataFromStorage in app.js from demo to move forward *****
